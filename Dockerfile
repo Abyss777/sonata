@@ -1,4 +1,4 @@
-FROM node:12.19.0
+FROM node:12.19-buster
 
 RUN apt-get update
 ARG NODE_ENV

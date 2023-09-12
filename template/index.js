@@ -45,9 +45,10 @@ class Builder {
   template(device) {
     const vendor = device.vendor;
     const model = device.model;
+    const token = device.token;
 
     const deviceSpec = this.vendors.getDeviceSpec(vendor, model);
-    const template = this.vendors.getConfigTemplate(vendor, model);
+    const template = this.vendors.getConfigTemplate(vendor, model, token);
 
     if (!template) {
       return null;

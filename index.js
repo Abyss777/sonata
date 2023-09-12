@@ -22,10 +22,12 @@ const helpers = {
 
 const settingsConn = mongoose.createConnection(config.settings.mongodb, {
   useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
 
 const logsConn = mongoose.createConnection(config.logs.mongodb, {
   useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
 
 const Device = settingsConn.model(

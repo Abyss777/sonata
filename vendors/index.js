@@ -1,4 +1,5 @@
 const scopes = require('./scopes');
+const config = require('config');
 const path = require('path');
 const fs = require('fs');
 
@@ -59,15 +60,21 @@ class VendorStore {
   /**
    * @param {string} vendor
    * @param {string} model
+   * @param {string} token
    * @return {*}
    */
-  getConfigTemplate(vendor, model) {
+  getConfigTemplate(vendor, model, token) {
     const deviceSpec = this.getDeviceSpec(vendor, model);
     if (!deviceSpec || !deviceSpec.template) {
       return null;
     }
 
-    const templatePath = path.resolve(__dirname, deviceSpec.template);
+    let templatePath = path.resolve(config.templates.path, token, deviceSpec.template);
+    if (!fs.existsSync(templatePath)) {
+      console.log('template file:', templatePath, ' not found, using default template');
+      templatePath = path.resolve(__dirname, deviceSpec.template);
+    }
+
     const template = fs.readFileSync(templatePath);
 
     return template.toString('utf8');

@@ -17,4 +17,7 @@ module.exports = {
   remove: {
     cron: '0 4 * * *',
   },
+  templates: {
+    path: '/opt/templates',
+  },
 };
