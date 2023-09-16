@@ -28,6 +28,11 @@ const getMacFromFile = (filename) => {
   if (macArray4 && macArray4[1]) {
     return macArray4[1].toLowerCase();
   }
+
+  const macArray5 = filename.match(new RegExp('(.*)'));
+  if (macArray5 && macArray5[1]) {
+    return macArray5[1].toLowerCase();
+  }
 };
 
 module.exports = {
