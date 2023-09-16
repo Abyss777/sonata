@@ -48,7 +48,7 @@ module.exports = (Device, RequestLog, template, helpers) => {
         .then((device) => {
           const t = template.template(device);
           console.log('vendor', device.vendor);
-          console.log('config template', t);
+          //console.log('config template', t);
           log.status = 'OK';
 
           res.status(200).type('application/xml').send(t);
