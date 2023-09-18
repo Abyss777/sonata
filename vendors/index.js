@@ -37,9 +37,15 @@ class VendorStore {
    * @param {string} offset
    * @return {*}
    */
-  getTimezoneByOffset(vendor, offset) {
+  getTimezoneByOffset(vendor, model, offset) {
     const vendorSpec = this.getVendorSpec(vendor);
-    const tz = vendorSpec.timezones ? vendorSpec.timezones[offset] : null;
+    const modelSpec = this.getDeviceSpec(vendor, model);
+    let tz = null;
+    if (modelSpec.timezones) {
+      tz = modelSpec.timezones ? modelSpec.timezones[offset] : null;
+    } else {
+      tz = vendorSpec.timezones ? vendorSpec.timezones[offset] : null;
+    }
     return tz;
   };
 
