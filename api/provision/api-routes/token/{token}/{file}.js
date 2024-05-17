@@ -1,6 +1,9 @@
 
 const strip = require('strip-passwords');
 // const helper = require('./../../../../../api/manage/helper');
+const config = require('config');
+const path = require('path');
+const fs = require('fs');
 
 module.exports = (Device, RequestLog, template, helpers) => {
   /**
@@ -35,6 +38,17 @@ module.exports = (Device, RequestLog, template, helpers) => {
       remote_ip: req.remote_ip,
       mac,
     };
+
+    let filePath = path.resolve(config.templates.path, token, file);
+    if (!fs.existsSync(filePath)) {
+      console.log('raw file:', filePath, ' not found, looking for device');
+    } else {
+      console.log('raw file:', filePath, ' found, return it');
+      const rawFile = fs.readFileSync(filePath);
+      log.status = 'OK';
+      res.status(200).type('text/plain').send(rawFile.toString('utf8'));
+      return;
+    }
 
     (() => {
       return new Promise((resolve, reject) => {
