@@ -21,6 +21,13 @@ module.exports = [
     accounts: 2,
   },
   {
+    id: 'gxp2160',
+    name: 'GXP2160',
+    type: 'phone',
+    template: 'grandstream/default_phone.xml',
+    accounts: 2,
+  },
+  {
     id: 'dp715',
     name: 'DP715',
     type: 'gateway',
