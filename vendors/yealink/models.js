@@ -90,4 +90,11 @@ module.exports = [
     template: 'yealink/default.cfg',
     accounts: 8,
   },
+  {
+    id: 'w70',
+    name: 'W70B',
+    type: 'phone',
+    template: 'yealink/default.cfg',
+    accounts: 10,
+  },
 ];
